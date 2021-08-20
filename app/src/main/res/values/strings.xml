@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Movie</string>
+
+    <string name="title_movie_trending">Movie Trending</string>
+    <string name="title_tv_show_trending">TV Show Trending</string>
 </resources>

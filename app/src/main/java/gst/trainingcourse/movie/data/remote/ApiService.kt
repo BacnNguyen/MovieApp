@@ -31,13 +31,13 @@ interface ApiService {
 
     @GET("trending/tv/{time_window}")
     fun getTrendingTvShow(
-        @Path("time_window") timeWindow: String,
+        @Path("time_window") timeWindow: String = TIME_WINDOW_DAY,
         @Query("api_key") apiKey: String = BuildConfig.API_KEY
     ): Call<TvShowResponse>
 
     @GET("trending/person/{time_window}")
     fun getTrendingPerson(
-        @Path("time_window") timeWindow: String,
+        @Path("time_window") timeWindow: String = TIME_WINDOW_DAY,
         @Query("api_key") apiKey: String = BuildConfig.API_KEY
     ): Call<PersonResponse>
 
