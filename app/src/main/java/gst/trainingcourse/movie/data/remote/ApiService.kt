@@ -1,5 +1,6 @@
 package gst.trainingcourse.movie.data.remote
 
+import gst.trainingcourse.movie.BuildConfig
 import gst.trainingcourse.movie.data.model.*
 import retrofit2.Call
 import retrofit2.http.GET
@@ -9,8 +10,6 @@ import retrofit2.http.Query
 interface ApiService {
 
     companion object {
-        const val API_KEY = "4b6dbb466a7dcc286e614fe5d5845299"
-        const val BASE_IMAGE_URL = "https://image.tmdb.org/t/p/original/"
         const val LANGUAGE_EN = "en-US"
         const val LANGUAGE_VN = "vi"
         const val MEDIA_TYPE_MOVIE = "movie"
@@ -27,24 +26,24 @@ interface ApiService {
     @GET("trending/movie/{time_window}")
     fun getTrendingMovie(
         @Path("time_window") timeWindow: String = TIME_WINDOW_DAY,
-        @Query("api_key") apiKey: String = API_KEY
+        @Query("api_key") apiKey: String = BuildConfig.API_KEY
     ): Call<MovieResponse>
 
     @GET("trending/tv/{time_window}")
     fun getTrendingTvShow(
         @Path("time_window") timeWindow: String,
-        @Query("api_key") apiKey: String = API_KEY
+        @Query("api_key") apiKey: String = BuildConfig.API_KEY
     ): Call<TvShowResponse>
 
     @GET("trending/person/{time_window}")
     fun getTrendingPerson(
         @Path("time_window") timeWindow: String,
-        @Query("api_key") apiKey: String = API_KEY
+        @Query("api_key") apiKey: String = BuildConfig.API_KEY
     ): Call<PersonResponse>
 
     @GET("movie/popular")
     fun getPopularMovie(
-        @Query("api_key") apiKey: String = API_KEY,
+        @Query("api_key") apiKey: String = BuildConfig.API_KEY,
         @Query("language") language: String = LANGUAGE_EN,
         @Query("page") page: Int = 0,
         @Query("region") region: String = REGION_VN
@@ -52,7 +51,7 @@ interface ApiService {
 
     @GET("tv/popular")
     fun getPopularShow(
-        @Query("api_key") apiKey: String = API_KEY,
+        @Query("api_key") apiKey: String = BuildConfig.API_KEY,
         @Query("language") language: String = LANGUAGE_EN,
         @Query("page") page: Int = 0
     ): Call<TvShowResponse>
@@ -60,28 +59,28 @@ interface ApiService {
     @GET("movie/{movie_id}/videos")
     fun getYoutubeTrailerOfMovie(
         @Path("movie_id") movieId: Int,
-        @Query("api_key") apiKey: String = API_KEY,
+        @Query("api_key") apiKey: String = BuildConfig.API_KEY,
         @Query("language") language: String = LANGUAGE_EN
     ): Call<YoutubeResponse>
 
     @GET("tv/{tv_id}/videos")
     fun getYoutubeTrailerOfShow(
         @Path("tv_id") showId: Int,
-        @Query("api_key") apiKey: String = API_KEY,
+        @Query("api_key") apiKey: String = BuildConfig.API_KEY,
         @Query("language") language: String = LANGUAGE_EN
     ): Call<YoutubeResponse>
 
     @GET("movie/{movie_id}")
     fun getMovieDetail(
         @Path("movie_id") movieId: Int,
-        @Query("api_key") apiKey: String = API_KEY,
+        @Query("api_key") apiKey: String = BuildConfig.API_KEY,
         @Query("language") language: String = LANGUAGE_EN
     ): Call<MovieResponse.Movie>
 
     @GET("movie/{movie_id}/recommendations")
     fun getMovieRecommendations(
         @Path("movie_id") movieId: Int,
-        @Query("api_key") apiKey: String = API_KEY,
+        @Query("api_key") apiKey: String = BuildConfig.API_KEY,
         @Query("language") language: String = LANGUAGE_EN,
         @Query("page") page: Int = 1
     ): Call<MovieResponse>
@@ -89,21 +88,21 @@ interface ApiService {
     @GET("tv/{tv_id}")
     fun getShowDetail(
         @Path("tv_id") tvId: Int,
-        @Query("api_key") apiKey: String = API_KEY,
+        @Query("api_key") apiKey: String = BuildConfig.API_KEY,
         @Query("language") language: String = LANGUAGE_EN
     ): Call<TvShowResponse.TvShow>
 
     @GET("tv/{tv_id}/recommendations")
     fun getShowRecommendations(
         @Path("tv_id") movieId: Int,
-        @Query("api_key") apiKey: String = API_KEY,
+        @Query("api_key") apiKey: String = BuildConfig.API_KEY,
         @Query("language") language: String = LANGUAGE_EN,
         @Query("page") page: Int = 1
     ): Call<TvShowResponse>
 
     @GET("search/multi")
     fun getSearchResult(
-        @Query("api_key") apiKey: String = API_KEY,
+        @Query("api_key") apiKey: String = BuildConfig.API_KEY,
         @Query("language") language: String = LANGUAGE_EN,
         @Query("page") page: Int = 1,
         @Query("query") query: String = ""
@@ -112,7 +111,7 @@ interface ApiService {
     @GET("person/{person_id}")
     fun getPersonDetail(
         @Path("person_id") personId: Int,
-        @Query("api_key") apiKey: String = API_KEY,
+        @Query("api_key") apiKey: String = BuildConfig.API_KEY,
         @Query("language") language: String = LANGUAGE_EN,
         @Query("append_to_response") appendToResponse: String = APPEND_TO_RESPONSE_IMAGES
     ): Call<PersonDetail>
