@@ -10,4 +10,5 @@
 
     <color name="primary">#FF6200EE</color>
     <color name="bg_application">#FFFFFFFF</color>
+    <color name="bg_secondary_category">#75070707</color>
 </resources>
