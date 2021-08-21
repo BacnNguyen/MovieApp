@@ -7,4 +7,20 @@ interface RemoteRepo {
     suspend fun getMovieTrending(): MovieResponse
 
     suspend fun getTVShowTrending(): TvShowResponse
+
+    suspend fun getPopularMovie(): MovieResponse
+
+    suspend fun getMovieNowPlaying(): MovieResponse
+
+    suspend fun getMovieTopRated(): MovieResponse
+
+    suspend fun getMovieUpcoming(): MovieResponse
+
+    suspend fun getPopularShow(): TvShowResponse
+
+    suspend fun getTVShowTopRated(): TvShowResponse
+
+    suspend fun getTVShowAiringToday(): TvShowResponse
+
+    suspend fun getTVShowOnTheAir(): TvShowResponse
 }
