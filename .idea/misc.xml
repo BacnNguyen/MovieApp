@@ -5,6 +5,9 @@
       <map>
         <entry key="..\:/Fsoft/android_03_g04/app/src/main/res/layout/activity_main.xml" value="0.13020833333333334" />
         <entry key="..\:/Fsoft/android_03_g04/app/src/main/res/layout/fragment_home.xml" value="0.13020833333333334" />
+        <entry key="..\:/Fsoft/android_03_g04/app/src/main/res/layout/fragment_search.xml" value="0.25416666666666665" />
+        <entry key="..\:/Fsoft/android_03_g04/app/src/main/res/layout/item_movie.xml" value="0.25416666666666665" />
+        <entry key="..\:/Fsoft/android_03_g04/app/src/main/res/layout/item_search.xml" value="0.25416666666666665" />
         <entry key="..\:/android_03_g04/app/src/main/res/drawable/bg_secondary_category.xml" value="0.2703125" />
         <entry key="..\:/android_03_g04/app/src/main/res/drawable/ic_app.xml" value="0.2703125" />
         <entry key="..\:/android_03_g04/app/src/main/res/drawable/ic_search.xml" value="0.2703125" />

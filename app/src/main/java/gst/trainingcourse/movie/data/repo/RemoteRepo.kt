@@ -1,6 +1,7 @@
 package gst.trainingcourse.movie.data.repo
 
 import gst.trainingcourse.movie.data.model.MovieResponse
+import gst.trainingcourse.movie.data.model.SearchResponse
 import gst.trainingcourse.movie.data.model.TvShowResponse
 
 interface RemoteRepo {
@@ -23,4 +24,6 @@ interface RemoteRepo {
     suspend fun getTVShowAiringToday(): TvShowResponse
 
     suspend fun getTVShowOnTheAir(): TvShowResponse
+
+    suspend fun search(query: String): SearchResponse
 }
