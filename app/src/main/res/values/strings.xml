@@ -3,4 +3,6 @@
 
     <string name="title_movie_trending">Movie Trending</string>
     <string name="title_tv_show_trending">TV Show Trending</string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
 </resources>
