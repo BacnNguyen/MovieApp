@@ -26,4 +26,8 @@ interface RemoteRepo {
     suspend fun getTVShowOnTheAir(): TvShowResponse
 
     suspend fun search(query: String): SearchResponse
+
+    suspend fun getMovieDetail(movieId:Int): MovieResponse.Movie
+
+    suspend fun getRecommendMovie(movieId: Int):MovieResponse
 }
