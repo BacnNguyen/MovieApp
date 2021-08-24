@@ -2,6 +2,7 @@ package gst.trainingcourse.movie.utils
 
 import android.os.SystemClock
 import android.util.Log
+import android.view.MotionEvent
 import android.view.View
 import retrofit2.Call
 import retrofit2.Callback
@@ -37,6 +38,20 @@ fun View.setSingleClick(timeout: Long = 1000L, callback: () -> Unit) {
             }
             lastClickTime = SystemClock.elapsedRealtime()
             callback()
+        }
+    })
+}
+
+fun View.setOnSingleTouch(timeout: Long = 1000L, callback: (event : MotionEvent) -> Unit) {
+    setOnTouchListener(object : View.OnTouchListener {
+        var lastClickTime: Long = 0
+        override fun onTouch(v: View?, event: MotionEvent?): Boolean {
+            if (SystemClock.elapsedRealtime() - lastClickTime < timeout) {
+                return false
+            }
+            lastClickTime = SystemClock.elapsedRealtime()
+            callback(event!!)
+            return true
         }
     })
 }

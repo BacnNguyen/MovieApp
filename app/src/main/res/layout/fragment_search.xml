@@ -8,41 +8,55 @@
         android:background="@color/bg_application"
         android:paddingHorizontal="@dimen/dp_10">
 
-        <androidx.appcompat.widget.AppCompatAutoCompleteTextView
-            android:id="@+id/auto_complete_text_view"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_search"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_50"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_30"
             android:background="@color/primary"
-            android:completionThreshold="0"
-            android:imeOptions="actionSearch"
-            android:inputType="text"
-            android:maxLines="1"
-            android:paddingHorizontal="@dimen/dp_50"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:padding="@dimen/dp_10"
-            android:src="@drawable/ic_search"
-            app:layout_constraintBottom_toBottomOf="@id/auto_complete_text_view"
-            app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintStart_toStartOf="@id/auto_complete_text_view"
-            app:layout_constraintTop_toTopOf="@id/auto_complete_text_view" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/image_mic"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:padding="@dimen/dp_10"
-            android:src="@drawable/ic_mic"
-            app:layout_constraintBottom_toBottomOf="@id/auto_complete_text_view"
-            app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintEnd_toEndOf="@id/auto_complete_text_view"
-            app:layout_constraintTop_toTopOf="@id/auto_complete_text_view" />
+            <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+                android:id="@+id/auto_complete_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_50"
+                android:layout_marginEnd="50dp"
+                android:background="@color/primary"
+                android:completionThreshold="0"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:maxLines="1"
+                android:paddingHorizontal="@dimen/dp_50"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                app:layout_constraintEnd_toStartOf="@id/image_mic"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:padding="@dimen/dp_10"
+                android:src="@drawable/ic_search"
+                app:layout_constraintBottom_toBottomOf="@id/auto_complete_text_view"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintStart_toStartOf="@id/auto_complete_text_view"
+                app:layout_constraintTop_toTopOf="@id/auto_complete_text_view" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_mic"
+                android:layout_width="50dp"
+                android:layout_height="0dp"
+                android:padding="@dimen/dp_10"
+                android:src="@drawable/ic_mic"
+                app:layout_constraintBottom_toBottomOf="@id/auto_complete_text_view"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintStart_toEndOf="@id/auto_complete_text_view"
+                app:layout_constraintTop_toTopOf="@id/auto_complete_text_view" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view"
@@ -52,7 +66,7 @@
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/auto_complete_text_view" />
+            app:layout_constraintTop_toBottomOf="@id/layout_search" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
