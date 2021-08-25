@@ -1,5 +1,7 @@
 package gst.trainingcourse.movie.data.repo
 
+import gst.trainingcourse.movie.data.model.TvShowResponse
+import gst.trainingcourse.movie.data.model.YoutubeResponse
 import gst.trainingcourse.movie.data.remote.ApiService
 import gst.trainingcourse.movie.utils.extract
 import javax.inject.Inject
@@ -32,4 +34,15 @@ class RemoteRepoImpl @Inject constructor(private val api: ApiService) : RemoteRe
 
     override suspend fun getRecommendMovie(movieId: Int) =
         api.getMovieRecommendations(movieId).extract()
+
+    override suspend fun getMovieTrailer(movieId: Int) =
+        api.getYoutubeTrailerOfMovie(movieId).extract()
+
+    override suspend fun getTVShowDetail(showId: Int) = api.getShowDetail(showId).extract()
+
+    override suspend fun getRecommendTVShow(showId: Int) =
+        api.getShowRecommendations(showId).extract()
+
+    override suspend fun getTVShowTrailer(showId: Int) =
+        api.getYoutubeTrailerOfShow(showId).extract()
 }

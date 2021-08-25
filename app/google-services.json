@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "945272940364",
+    "project_id": "moviefsoft",
+    "storage_bucket": "moviefsoft.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:945272940364:android:6a0cfc041dc1319298d1e9",
+        "android_client_info": {
+          "package_name": "gst.trainingcourse.movie"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "945272940364-v2ojtn4sg2a5ava9fkq08r28e95ikll7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBK3Ef1ppM0a2ANX6EYJa1pV4laQ_yypDw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "945272940364-v2ojtn4sg2a5ava9fkq08r28e95ikll7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

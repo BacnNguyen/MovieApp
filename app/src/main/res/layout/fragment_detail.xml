@@ -1,130 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
-        <ScrollView
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <RelativeLayout
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_poster"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="5:7"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-                <ImageView
-                    android:id="@+id/avt_movie"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/detail_movie_avt">
-                </ImageView>
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_favorite"
+                android:layout_width="@dimen/dp_50"
+                android:layout_height="@dimen/dp_50"
+                android:layout_marginTop="@dimen/dp_25"
+                android:src="@drawable/ic_favorite"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/image_poster" />
 
-                <TextView
-                    android:id="@+id/name_movie"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/avt_movie"
-                    android:layout_centerHorizontal="true"
-                    android:padding="@dimen/sp_5"
-                    android:text="name"
-                    android:textSize="@dimen/dp_30"
-                    android:textStyle="bold">
-                </TextView>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/dp_50"
+                android:layout_marginTop="@dimen/dp_25"
+                android:gravity="center"
+                android:textSize="@dimen/sp_35"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/image_favorite" />
 
-                <ImageView
-                    android:id="@+id/btn_bookmark"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/avt_movie"
-                    android:layout_alignParentEnd="true"
-                    android:padding="@dimen/sp_10"
-                    android:scaleX="1.5"
-                    android:scaleY="1.5"
-                    android:src="@drawable/ic_detail_bookmark"
-                    tools:ignore="SpeakableTextPresentCheck">
-                </ImageView>
+            <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+                android:id="@+id/youtube_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_25"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text_view_name" />
 
-                <LinearLayout
-                    android:id="@+id/btn_play_trailer"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/name_movie"
-                    android:layout_centerHorizontal="true"
-                    android:background="#003AE6"
-                    android:orientation="horizontal"
-                    android:padding="@dimen/dp_10">
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_genre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="50dp"
+                android:gravity="center"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/youtube_view" />
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/dp_5"
-                        android:src="@drawable/ic_play_trailer"
-                        app:tint="#FF0000">
-                    </ImageView>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_release_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/dp_50"
+                android:layout_marginTop="@dimen/dp_8"
+                android:gravity="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text_view_genre" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="TRAILER"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/sp_20"
-                        android:textStyle="bold">
-                    </TextView>
-                </LinearLayout>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_overview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_8"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_view_release_date" />
 
-                <TextView
-                    android:id="@+id/year_movie"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/btn_play_trailer"
-                    android:layout_centerHorizontal="true"
-                    android:text="2021"
-                    android:textSize="@dimen/sp_30">
-                </TextView>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_recommendations"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_8"
+                android:textSize="@dimen/sp_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text_view_overview" />
 
-                <TextView
-                    android:id="@+id/description_movie"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/year_movie">
-                </TextView>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view_recommend"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text_view_recommendations" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Recommends"
-                    android:layout_below="@+id/description_movie"
-                    android:textSize="@dimen/dp_20"
-                    android:padding="@dimen/dp_10"
-                    android:textColor="#0019FF"
-                    android:id="@+id/label_recommend">
-                </TextView>
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edit_text_user_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/dp_20"
+                android:layout_marginTop="@dimen/dp_20"
+                android:hint="@string/hint_user_name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/recycler_view_recommend" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycle_view_recommend"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/label_recommend"
-                    android:orientation="horizontal"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
-                </androidx.recyclerview.widget.RecyclerView>
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edit_text_comment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/dp_20"
+                android:layout_marginTop="@dimen/dp_10"
+                android:hint="@string/hint_comment"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/edit_text_user_name" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/sp_20"
-                    android:layout_below="@id/recycle_view_recommend"
-                    android:textColor="#0019FF"
-                    android:padding="@dimen/dp_10"
-                    android:id="@+id/label_comment">
-                </TextView>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/button_comment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:text="@string/hint_comment"
+                android:textAllCaps="false"
+                app:layout_constraintEnd_toEndOf="@id/edit_text_comment"
+                app:layout_constraintTop_toBottomOf="@id/edit_text_comment" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/recycle_view_comment"
-                    android:layout_below="@+id/label_comment"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
-                </androidx.recyclerview.widget.RecyclerView>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view_comment"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_500"
+                android:layout_marginHorizontal="@dimen/dp_20"
+                android:layout_marginTop="@dimen/dp_30"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/button_comment" />
 
-            </RelativeLayout>
-        </ScrollView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
 </layout>

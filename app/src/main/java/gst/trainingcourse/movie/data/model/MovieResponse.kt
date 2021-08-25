@@ -1,6 +1,9 @@
 package gst.trainingcourse.movie.data.model
 
 import android.os.Parcelable
+import androidx.room.Entity
+import androidx.room.Ignore
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
@@ -17,33 +20,36 @@ data class MovieResponse(
 ) : Parcelable {
 
     @Parcelize
+    @Entity(tableName = "movie_favorite")
     data class Movie(
+        @PrimaryKey(autoGenerate = false)
         @SerializedName("id")
-        val id: Int = 0,
+        var id: Int = 0,
 
         @SerializedName("vote_average")
-        val voteAverage: Double = 0.0,
+        var voteAverage: Double = 0.0,
 
         @SerializedName("title")
-        val title: String = "",
+        var title: String = "",
 
         @SerializedName("release_date")
-        val releaseDate: String = "",
+        var releaseDate: String = "",
 
+        @Ignore
         @SerializedName("genres")
         val genres: List<Genre> = listOf(),
 
         @SerializedName("overview")
-        val overview: String = "",
+        var overview: String = "",
 
         @SerializedName("poster_path")
-        val posterPath: String = "",
+        var posterPath: String = "",
 
         @SerializedName("homepage")
-        val homepage: String = "",
+        var homepage: String = "",
 
         @SerializedName("budget")
-        val budget: Int = 0
+        var budget: Int = 0
     ) : Parcelable
 
 }

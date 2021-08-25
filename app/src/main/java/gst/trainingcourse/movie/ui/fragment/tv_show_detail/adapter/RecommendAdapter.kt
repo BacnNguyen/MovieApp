@@ -1,4 +1,4 @@
-package gst.trainingcourse.movie.ui.fragment.detail.adapter
+package gst.trainingcourse.movie.ui.fragment.tv_show_detail.adapter
 
 import android.annotation.SuppressLint
 import com.bumptech.glide.Glide
@@ -6,14 +6,14 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.request.RequestOptions
 import gst.trainingcourse.movie.BuildConfig
 import gst.trainingcourse.movie.R
-import gst.trainingcourse.movie.data.model.MovieResponse
+import gst.trainingcourse.movie.data.model.TvShowResponse
 import gst.trainingcourse.movie.databinding.ItemMovieRecommendBinding
 import gst.trainingcourse.movie.ui.adapter.BaseAdapter
 
 
 @SuppressLint("CheckResult")
-class MovieRecommendAdapter(private val onItemClick: (MovieResponse.Movie) -> Unit) :
-    BaseAdapter<MovieResponse.Movie, ItemMovieRecommendBinding>(R.layout.item_movie_recommend) {
+class RecommendAdapter(private val onItemClick: (TvShowResponse.TvShow) -> Unit) :
+    BaseAdapter<TvShowResponse.TvShow, ItemMovieRecommendBinding>(R.layout.item_movie_recommend) {
 
     private val requestOptions by lazy {
         RequestOptions().apply {
@@ -26,7 +26,6 @@ class MovieRecommendAdapter(private val onItemClick: (MovieResponse.Movie) -> Un
             onItemClick.invoke(getItem(position))
         }
     }
-
 
     override fun notNeedRebind(holder: ViewHolder, position: Int) {
         holder.binding.apply {
