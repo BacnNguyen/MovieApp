@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.request.RequestOptions
@@ -29,6 +30,7 @@ import gst.trainingcourse.movie.ui.fragment.movie_detail.adapter.CommentAdapter
 import gst.trainingcourse.movie.ui.fragment.tv_show_detail.adapter.RecommendAdapter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
@@ -54,6 +56,8 @@ class TVShowDetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragme
         CommentAdapter()
     }
 
+    private val arg by navArgs<TVShowDetailFragmentArgs>()
+
     private val valueEventListener by lazy {
         object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -73,9 +77,7 @@ class TVShowDetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragme
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        arguments?.getInt(ARG_DETAIL)?.let {
-            loadUI(it)
-        }
+        loadUI(arg.tvShowId)
 
         setupRecyclerViewRecommend()
         setupRecyclerViewComment()
@@ -109,7 +111,9 @@ class TVShowDetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragme
 
                 lifecycleScope.launch(Dispatchers.IO) {
                     val movie = viewModel.getTVShow(it.id)
-                    imageFavorite.isActivated = movie != null
+                    withContext(Dispatchers.Main) {
+                        imageFavorite.isActivated = movie != null
+                    }
                 }
             }
         }

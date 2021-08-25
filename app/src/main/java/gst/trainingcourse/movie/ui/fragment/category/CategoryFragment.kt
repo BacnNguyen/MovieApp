@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import gst.trainingcourse.movie.R
 import gst.trainingcourse.movie.data.model.Category
@@ -40,7 +41,17 @@ class CategoryFragment : BaseFragment<FragmentCategoryBinding>(R.layout.fragment
     }
 
     private fun onCategoryClick(item: Category, position: Int) {
-
+        val action = when (item.name) {
+            "Movie Popular" -> CategoryFragmentDirections.actionCategoryToMoviePopular()
+            "Movie Now Playing" -> CategoryFragmentDirections.actionCategoryToMovieNowPlaying()
+            "Movie Top Rated" -> CategoryFragmentDirections.actionCategoryToMovieTopRated()
+            "Movie Upcoming" -> CategoryFragmentDirections.actionCategoryToMovieUpComing()
+            "TV Show Popular" -> CategoryFragmentDirections.actionCategoryToShowPopular()
+            "TV Show Top Rated" -> CategoryFragmentDirections.actionCategoryToShowTopRated()
+            "TV Show Airing Today" -> CategoryFragmentDirections.actionCategoryToShowAiringToday()
+            else -> CategoryFragmentDirections.actionCategoryToShowOnTheAir()
+        }
+        findNavController().navigate(action)
     }
 
     companion object {

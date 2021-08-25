@@ -28,50 +28,7 @@ abstract class BaseFragment<FragmentViewBinding : ViewDataBinding>(@LayoutRes va
             isClickable = true
             isFocusable = true
         }
-        activity?.onBackPressedDispatcher?.addCallback(
-            viewLifecycleOwner,
-            object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {
-                    onBackPress()
-                }
-            })
         return binding.root
-    }
-
-    protected open fun onBackPress() {
-        close()
-    }
-
-    protected open fun close() {
-        activity?.supportFragmentManager?.popBackStack()
-    }
-
-    protected fun addFragment(
-        fragment: Fragment,
-        tag: String? = null,
-        direction: TransitionDirection = TransitionDirection.BOTTOM,
-        isAddBackStack: Boolean = true
-    ) {
-        activity?.supportFragmentManager?.beginTransaction()?.apply {
-            setAnimationDirection(direction)
-            add(R.id.main_container, fragment, tag)
-            if (isAddBackStack) addToBackStack(null)
-            commit()
-        }
-    }
-
-    protected fun replaceFragment(
-        fragment: Fragment,
-        tag: String? = null,
-        direction: TransitionDirection = TransitionDirection.BOTTOM,
-        isAddBackStack: Boolean = true
-    ) {
-        activity?.supportFragmentManager?.beginTransaction()?.apply {
-            setAnimationDirection(direction)
-            replace(R.id.main_container, fragment, tag)
-            if (isAddBackStack) addToBackStack(null)
-            commit()
-        }
     }
 
     private fun FragmentTransaction.setAnimationDirection(direction: TransitionDirection) {

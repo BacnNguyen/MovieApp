@@ -35,4 +35,10 @@ interface AppDao {
 
     @Query("DELETE FROM show_favorite WHERE id = :showId")
     fun deleteTVShow(showId: Int)
+
+    @Query("SELECT * FROM movie_favorite")
+    fun getAllMovie(): LiveData<List<MovieResponse.Movie>>
+
+    @Query("SELECT * FROM show_favorite")
+    fun getAllTVShow(): LiveData<List<TvShowResponse.TvShow>>
 }

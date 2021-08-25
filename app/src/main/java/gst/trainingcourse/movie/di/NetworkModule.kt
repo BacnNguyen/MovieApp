@@ -1,5 +1,6 @@
 package gst.trainingcourse.movie.di
 
+import android.util.Log
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -9,11 +10,16 @@ import gst.trainingcourse.movie.data.remote.ApiService
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Named
 import javax.inject.Singleton
+import kotlin.coroutines.resume
+import kotlin.coroutines.suspendCoroutine
 
 @InstallIn(SingletonComponent::class)
 @Module
@@ -67,4 +73,21 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideApiService(retrofit: Retrofit): ApiService = retrofit.create(ApiService::class.java)
+}
+suspend fun <T> Call<T>.extract(): T {
+    return suspendCoroutine { continuation ->
+        enqueue(object : Callback<T> {
+            override fun onFailure(call: Call<T>, t: Throwable) {
+                Log.e("Network Module", "Error Data! ${t.message}")
+            }
+
+            override fun onResponse(call: Call<T>, response: Response<T>) {
+                if (response.isSuccessful && response.body() != null) {
+                    continuation.resume(response.body()!!)
+                } else {
+                    Log.e("Network Module", "Error Data! ${response.message()}")
+                }
+            }
+        })
+    }
 }

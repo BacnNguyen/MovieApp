@@ -22,4 +22,8 @@ interface LocalRepo {
     fun getShow(showId: Int): TvShowResponse.TvShow
 
     fun deleteShow(showId: Int)
+
+    fun getAllMovie(): LiveData<List<MovieResponse.Movie>>
+
+    fun getAllTVShow(): LiveData<List<TvShowResponse.TvShow>>
 }

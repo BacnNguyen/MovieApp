@@ -1,23 +1,21 @@
-package gst.trainingcourse.movie.ui.fragment.home
+package gst.trainingcourse.movie.ui.fragment.favorite
 
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import gst.trainingcourse.movie.R
 import gst.trainingcourse.movie.data.model.MovieResponse
 import gst.trainingcourse.movie.data.model.TvShowResponse
-import gst.trainingcourse.movie.databinding.FragmentHomeBinding
+import gst.trainingcourse.movie.databinding.FragmentFavoriteBinding
 import gst.trainingcourse.movie.helper.LinearHorizontalItemDecoration
 import gst.trainingcourse.movie.ui.fragment.base.BaseFragment
 import gst.trainingcourse.movie.ui.fragment.home.adapter.MovieAdapter
 import gst.trainingcourse.movie.ui.fragment.home.adapter.TVShowAdapter
 
 @AndroidEntryPoint
-class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
-
-    private val viewModel by viewModels<HomeViewModel>()
+class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(R.layout.fragment_favorite) {
+    private val viewModel by viewModels<FavoriteViewModel>()
 
     private val movieAdapter by lazy { MovieAdapter(this::onMovieClick) }
 
@@ -30,8 +28,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         setupTVShowRecyclerView()
 
         observeData()
+    }
 
-        setEvent()
+    private fun observeData() {
+        viewModel.getAllMovie().observe(viewLifecycleOwner) {
+            movieAdapter.submitList(it)
+        }
+
+        viewModel.getAllTVShow().observe(viewLifecycleOwner) {
+            tvShowAdapter.submitList(it)
+        }
     }
 
     private fun setupMovieRecyclerView() {
@@ -48,35 +54,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         }
     }
 
-    private fun setEvent() {
-        binding.viewSearch.setOnClickListener {
-            findNavController().navigate(R.id.action_home_to_search)
-        }
-    }
-
-    private fun observeData() {
-        viewModel.movies.observe(viewLifecycleOwner) {
-            movieAdapter.submitList(it)
-        }
-
-        viewModel.tvShow.observe(viewLifecycleOwner) {
-            tvShowAdapter.submitList(it)
-        }
-    }
-
     private fun onMovieClick(item: MovieResponse.Movie, position: Int) {
-        val action = HomeFragmentDirections.actionHomeToMovieDetail(item.id)
-        findNavController().navigate(action)
+
     }
 
     private fun onTVShowClick(item: TvShowResponse.TvShow, position: Int) {
-        val action = HomeFragmentDirections.actionHomeToTvShowDetail(item.id)
-        findNavController().navigate(action)
-    }
 
-    companion object {
-        const val TAG = "HomeFragment"
-
-        fun newInstance() = HomeFragment()
     }
 }
