@@ -178,7 +178,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
     }
 
     private fun startRecording() {
-        binding.imageMic.setImageResource(R.drawable.ic_baseline_mic_24_red)
+        binding.imageMic.setImageResource(R.drawable.ic_mic)
         speechRecognizer.startListening(speechRecognizerIntent)
     }
 
