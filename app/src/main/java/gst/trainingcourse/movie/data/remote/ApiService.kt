@@ -81,7 +81,6 @@ interface ApiService {
     fun getMovieUpcoming(
         @Query("api_key") apiKey: String = BuildConfig.API_KEY,
         @Query("language") language: String = LANGUAGE_EN,
-        @Query("region") region: String = REGION_VN,
         @Query("page") page: Int = 1
     ): Call<MovieResponse>
 

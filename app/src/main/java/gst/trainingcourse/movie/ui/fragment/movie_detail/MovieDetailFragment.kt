@@ -2,10 +2,10 @@ package gst.trainingcourse.movie.ui.fragment.movie_detail
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.request.RequestOptions
@@ -29,6 +29,7 @@ import gst.trainingcourse.movie.ui.fragment.movie_detail.adapter.CommentAdapter
 import gst.trainingcourse.movie.ui.fragment.movie_detail.adapter.RecommendAdapter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
@@ -54,6 +55,8 @@ class MovieDetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragmen
         CommentAdapter()
     }
 
+    private val arg by navArgs<MovieDetailFragmentArgs>()
+
     private val valueEventListener by lazy {
         object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -73,9 +76,7 @@ class MovieDetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragmen
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        arguments?.getInt(ARG_DETAIL_MOVIE)?.let {
-            loadUI(it)
-        }
+        loadUI(arg.movieId)
 
         setupRecyclerViewRecommend()
         setupRecyclerViewComment()
@@ -109,7 +110,9 @@ class MovieDetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragmen
 
                 lifecycleScope.launch(Dispatchers.IO) {
                     val movie = viewModel.getMovie(it.id)
-                    imageFavorite.isActivated = movie != null
+                    withContext(Dispatchers.Main) {
+                        imageFavorite.isActivated = movie != null
+                    }
                 }
             }
         }
@@ -179,6 +182,13 @@ class MovieDetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragmen
                 }
             })
         }
+    }
+
+    override fun onDestroyView() {
+        lifecycleScope.launch {
+            getYoutubePlayer(binding.youtubeView).pause()
+        }
+        super.onDestroyView()
     }
 
     companion object {

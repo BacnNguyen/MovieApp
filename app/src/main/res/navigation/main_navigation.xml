@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/home">
+
+    <fragment
+        android:id="@+id/home"
+        android:name="gst.trainingcourse.movie.ui.fragment.home.HomeFragment"
+        android:label="HomeFragment">
+        <action
+            android:id="@+id/action_home_to_search"
+            app:destination="@id/search" />
+        <action
+            android:id="@+id/action_home_to_movie_detail"
+            app:destination="@id/movie_detail" />
+        <action
+            android:id="@+id/action_home_to_tv_show_detail"
+            app:destination="@id/tv_show_detail" />
+    </fragment>
+    <fragment
+        android:id="@+id/category"
+        android:name="gst.trainingcourse.movie.ui.fragment.category.CategoryFragment"
+        android:label="CategoryFragment" >
+        <action
+            android:id="@+id/action_category_to_movie_now_playing"
+            app:destination="@id/movie_now_playing" />
+        <action
+            android:id="@+id/action_category_to_movie_popular"
+            app:destination="@id/movie_popular" />
+        <action
+            android:id="@+id/action_category_to_movie_top_rated"
+            app:destination="@id/movie_top_rated" />
+        <action
+            android:id="@+id/action_category_to_movie_up_coming"
+            app:destination="@id/movie_up_coming" />
+        <action
+            android:id="@+id/action_category_to_show_airing_today"
+            app:destination="@id/show_airing_today" />
+        <action
+            android:id="@+id/action_category_to_show_on_the_air"
+            app:destination="@id/show_on_the_air" />
+        <action
+            android:id="@+id/action_category_to_show_popular"
+            app:destination="@id/show_popular" />
+        <action
+            android:id="@+id/action_category_to_show_top_rated"
+            app:destination="@id/show_top_rated" />
+    </fragment>
+    <fragment
+        android:id="@+id/favorite"
+        android:name="gst.trainingcourse.movie.ui.fragment.favorite.FavoriteFragment"
+        android:label="FavoriteFragment" />
+    <fragment
+        android:id="@+id/search"
+        android:name="gst.trainingcourse.movie.ui.fragment.search.SearchFragment"
+        android:label="SearchFragment" />
+    <fragment
+        android:id="@+id/movie_detail"
+        android:name="gst.trainingcourse.movie.ui.fragment.movie_detail.MovieDetailFragment"
+        android:label="MovieDetailFragment">
+        <argument
+            android:name="movieId"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/tv_show_detail"
+        android:name="gst.trainingcourse.movie.ui.fragment.tv_show_detail.TVShowDetailFragment"
+        android:label="TVShowDetailFragment">
+        <argument
+            android:name="tvShowId"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/movie_now_playing"
+        android:name="gst.trainingcourse.movie.ui.fragment.category.movie.movieNowPlaying.MovieNowPlayingFragment"
+        android:label="MovieNowPlayingFragment" >
+        <action
+            android:id="@+id/action_movie_now_playing_to_movie_detail"
+            app:destination="@id/movie_detail" />
+    </fragment>
+    <fragment
+        android:id="@+id/movie_popular"
+        android:name="gst.trainingcourse.movie.ui.fragment.category.movie.moviePopular.MoviePopularFragment"
+        android:label="MoviePopularFragment" >
+        <action
+            android:id="@+id/action_movie_popular_to_movie_detail"
+            app:destination="@id/movie_detail" />
+    </fragment>
+    <fragment
+        android:id="@+id/movie_top_rated"
+        android:name="gst.trainingcourse.movie.ui.fragment.category.movie.movieTopRated.MovieTopRatedFragment"
+        android:label="MovieTopRatedFragment" >
+        <action
+            android:id="@+id/action_movie_top_rated_to_movie_detail"
+            app:destination="@id/movie_detail" />
+    </fragment>
+    <fragment
+        android:id="@+id/movie_up_coming"
+        android:name="gst.trainingcourse.movie.ui.fragment.category.movie.movieUpComing.MovieUpComingFragment"
+        android:label="MovieUpComingFragment" >
+        <action
+            android:id="@+id/action_movie_up_coming_to_movie_detail"
+            app:destination="@id/movie_detail" />
+    </fragment>
+    <fragment
+        android:id="@+id/show_airing_today"
+        android:name="gst.trainingcourse.movie.ui.fragment.category.show.showAiringToday.ShowAiringTodayFragment"
+        android:label="ShowAiringTodayFragment" >
+        <action
+            android:id="@+id/action_show_airing_today_to_tv_show_detail"
+            app:destination="@id/tv_show_detail" />
+    </fragment>
+    <fragment
+        android:id="@+id/show_on_the_air"
+        android:name="gst.trainingcourse.movie.ui.fragment.category.show.showOnTheAir.ShowOnTheAirFragment"
+        android:label="ShowOnTheAirFragment" >
+        <action
+            android:id="@+id/action_show_on_the_air_to_tv_show_detail"
+            app:destination="@id/tv_show_detail" />
+    </fragment>
+    <fragment
+        android:id="@+id/show_popular"
+        android:name="gst.trainingcourse.movie.ui.fragment.category.show.showPopular.ShowPopularFragment"
+        android:label="ShowPopularFragment" >
+        <action
+            android:id="@+id/action_show_popular_to_tv_show_detail"
+            app:destination="@id/tv_show_detail" />
+    </fragment>
+    <fragment
+        android:id="@+id/show_top_rated"
+        android:name="gst.trainingcourse.movie.ui.fragment.category.show.showTopRated.ShowTopRatedFragment"
+        android:label="ShowTopRatedFragment" >
+        <action
+            android:id="@+id/action_show_top_rated_to_tv_show_detail"
+            app:destination="@id/tv_show_detail" />
+    </fragment>
+</navigation>

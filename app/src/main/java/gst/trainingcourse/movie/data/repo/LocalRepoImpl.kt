@@ -1,5 +1,6 @@
 package gst.trainingcourse.movie.data.repo
 
+import androidx.lifecycle.LiveData
 import gst.trainingcourse.movie.data.model.MovieResponse
 import gst.trainingcourse.movie.data.model.SearchHistory
 import gst.trainingcourse.movie.data.model.TvShowResponse
@@ -34,4 +35,8 @@ class LocalRepoImpl @Inject constructor(private val appDao: AppDao) :
     override fun deleteShow(showId: Int) {
         appDao.deleteTVShow(showId)
     }
+
+    override fun getAllMovie() = appDao.getAllMovie()
+
+    override fun getAllTVShow() = appDao.getAllTVShow()
 }
