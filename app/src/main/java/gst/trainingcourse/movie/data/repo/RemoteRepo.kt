@@ -1,9 +1,6 @@
 package gst.trainingcourse.movie.data.repo
 
-import gst.trainingcourse.movie.data.model.MovieResponse
-import gst.trainingcourse.movie.data.model.SearchResponse
-import gst.trainingcourse.movie.data.model.TvShowResponse
-import gst.trainingcourse.movie.data.model.YoutubeResponse
+import gst.trainingcourse.movie.data.model.*
 
 interface RemoteRepo {
     suspend fun getMovieTrending(): MovieResponse
@@ -39,4 +36,6 @@ interface RemoteRepo {
     suspend fun getRecommendTVShow(showId: Int):TvShowResponse
 
     suspend fun getTVShowTrailer(showId: Int): YoutubeResponse
+
+    suspend fun getPersonTrending() : PersonResponse
 }

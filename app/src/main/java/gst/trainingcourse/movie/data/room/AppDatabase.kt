@@ -2,13 +2,11 @@ package gst.trainingcourse.movie.data.room
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import gst.trainingcourse.movie.data.model.MovieResponse
-import gst.trainingcourse.movie.data.model.SearchHistory
-import gst.trainingcourse.movie.data.model.TvShowResponse
+import gst.trainingcourse.movie.data.model.*
 
 
 @Database(
-    entities = [SearchHistory::class, MovieResponse.Movie::class, TvShowResponse.TvShow::class],
+    entities = [SearchHistory::class, MovieResponse.Movie::class, TvShowResponse.TvShow::class, Recommend::class],
     version = 1,
     exportSchema = false
 )

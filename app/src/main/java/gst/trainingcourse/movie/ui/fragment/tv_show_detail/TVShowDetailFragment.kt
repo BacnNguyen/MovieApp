@@ -150,6 +150,7 @@ class TVShowDetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragme
                 } else {
                     viewModel.tvShowDetail.value?.let {
                         viewModel.saveShow(it)
+                        viewModel.saveRecommendShow()
                         imageFavorite.isActivated = !imageFavorite.isActivated
                     }
                 }

@@ -149,6 +149,7 @@ class MovieDetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragmen
                 } else {
                     viewModel.movieDetail.value?.let {
                         viewModel.saveMovie(it)
+                        viewModel.saveRecommendMovie()
                         imageFavorite.isActivated = !imageFavorite.isActivated
                     }
                 }

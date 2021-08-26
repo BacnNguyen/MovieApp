@@ -1,9 +1,7 @@
 package gst.trainingcourse.movie.data.repo
 
 import androidx.lifecycle.LiveData
-import gst.trainingcourse.movie.data.model.MovieResponse
-import gst.trainingcourse.movie.data.model.SearchHistory
-import gst.trainingcourse.movie.data.model.TvShowResponse
+import gst.trainingcourse.movie.data.model.*
 
 interface LocalRepo {
 
@@ -26,4 +24,9 @@ interface LocalRepo {
     fun getAllMovie(): LiveData<List<MovieResponse.Movie>>
 
     fun getAllTVShow(): LiveData<List<TvShowResponse.TvShow>>
+
+    fun saveRecommend(list : List<Recommend>)
+
+    fun getAllRecommend() : LiveData<List<Recommend>>
+
 }

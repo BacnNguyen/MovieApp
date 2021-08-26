@@ -1,5 +1,6 @@
 package gst.trainingcourse.movie.data.repo
 
+import gst.trainingcourse.movie.data.model.PersonResponse
 import gst.trainingcourse.movie.data.model.TvShowResponse
 import gst.trainingcourse.movie.data.model.YoutubeResponse
 import gst.trainingcourse.movie.data.remote.ApiService
@@ -45,4 +46,6 @@ class RemoteRepoImpl @Inject constructor(private val api: ApiService) : RemoteRe
 
     override suspend fun getTVShowTrailer(showId: Int) =
         api.getYoutubeTrailerOfShow(showId).extract()
+
+    override suspend fun getPersonTrending(): PersonResponse = api.getTrendingPerson().extract()
 }

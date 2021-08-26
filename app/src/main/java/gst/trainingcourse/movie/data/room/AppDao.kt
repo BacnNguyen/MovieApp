@@ -5,9 +5,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import gst.trainingcourse.movie.data.model.MovieResponse
-import gst.trainingcourse.movie.data.model.SearchHistory
-import gst.trainingcourse.movie.data.model.TvShowResponse
+import gst.trainingcourse.movie.data.model.*
 
 @Dao
 interface AppDao {
@@ -41,4 +39,10 @@ interface AppDao {
 
     @Query("SELECT * FROM show_favorite")
     fun getAllTVShow(): LiveData<List<TvShowResponse.TvShow>>
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    fun insertRecommend(list: List<Recommend>)
+
+    @Query("SELECT * FROM recommend ORDER BY timeStamp DESC LIMIT 20")
+    fun getAllRecommend(): LiveData<List<Recommend>>
 }

@@ -8,4 +8,6 @@
     <string name="title_trailer">Trailer</string>
     <string name="hint_user_name">User name</string>
     <string name="hint_comment">Comment</string>
+    <string name="title_person_trending">Person Trending</string>
+    <string name="title_recommend_for_you">Recommend for you</string>
 </resources>

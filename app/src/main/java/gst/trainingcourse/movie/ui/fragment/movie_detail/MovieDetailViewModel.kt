@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import gst.trainingcourse.movie.data.model.MovieResponse
+import gst.trainingcourse.movie.data.model.Recommend
 import gst.trainingcourse.movie.data.model.YoutubeResponse
 import gst.trainingcourse.movie.data.repo.LocalRepo
 import gst.trainingcourse.movie.data.repo.RemoteRepo
@@ -43,6 +44,20 @@ class MovieDetailViewModel @Inject constructor(
     fun saveMovie(movie: MovieResponse.Movie) {
         viewModelScope.launch(Dispatchers.IO) {
             localRepo.saveMovie(movie)
+        }
+    }
+
+    fun saveRecommendMovie() {
+        viewModelScope.launch(Dispatchers.IO) {
+            movieRecommend.value?.let { list ->
+                localRepo.saveRecommend(list.map {
+                    Recommend(
+                        id = it.id,
+                        isMovie = true,
+                        thumbNail = it.posterPath
+                    )
+                })
+            }
         }
     }
 
