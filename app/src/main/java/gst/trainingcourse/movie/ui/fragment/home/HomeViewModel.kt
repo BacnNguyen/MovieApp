@@ -13,16 +13,20 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(private val remoteRepo: RemoteRepo) : ViewModel() {
+class HomeViewModel @Inject constructor(
+    private val remoteRepo: RemoteRepo,
+    private val localRepo: LocalRepo
+) : ViewModel() {
 
     val movies = MutableLiveData<List<MovieResponse.Movie>>(emptyList())
 
     val tvShow = MutableLiveData<List<TvShowResponse.TvShow>>(emptyList())
-
     init {
         fetchMovieTrending()
         fetchTVShowTrending()
     }
+
+    fun getAllRecommend() = localRepo.getAllRecommend()
 
     private fun fetchMovieTrending() {
         viewModelScope.launch(Dispatchers.IO) {

@@ -1,9 +1,7 @@
 package gst.trainingcourse.movie.data.repo
 
 import androidx.lifecycle.LiveData
-import gst.trainingcourse.movie.data.model.MovieResponse
-import gst.trainingcourse.movie.data.model.SearchHistory
-import gst.trainingcourse.movie.data.model.TvShowResponse
+import gst.trainingcourse.movie.data.model.*
 import gst.trainingcourse.movie.data.room.AppDao
 import javax.inject.Inject
 
@@ -39,4 +37,9 @@ class LocalRepoImpl @Inject constructor(private val appDao: AppDao) :
     override fun getAllMovie() = appDao.getAllMovie()
 
     override fun getAllTVShow() = appDao.getAllTVShow()
+    override fun saveRecommend(list: List<Recommend>) {
+        appDao.insertRecommend(list)
+    }
+
+    override fun getAllRecommend(): LiveData<List<Recommend>> = appDao.getAllRecommend()
 }

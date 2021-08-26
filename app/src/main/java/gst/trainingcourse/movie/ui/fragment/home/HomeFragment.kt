@@ -7,11 +7,13 @@ import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import gst.trainingcourse.movie.R
 import gst.trainingcourse.movie.data.model.MovieResponse
+import gst.trainingcourse.movie.data.model.Recommend
 import gst.trainingcourse.movie.data.model.TvShowResponse
 import gst.trainingcourse.movie.databinding.FragmentHomeBinding
 import gst.trainingcourse.movie.helper.LinearHorizontalItemDecoration
 import gst.trainingcourse.movie.ui.fragment.base.BaseFragment
 import gst.trainingcourse.movie.ui.fragment.home.adapter.MovieAdapter
+import gst.trainingcourse.movie.ui.fragment.home.adapter.RecommendAdapter
 import gst.trainingcourse.movie.ui.fragment.home.adapter.TVShowAdapter
 
 @AndroidEntryPoint
@@ -23,15 +25,25 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
     private val tvShowAdapter by lazy { TVShowAdapter(this::onTVShowClick) }
 
+    private val recommendAdapter by lazy { RecommendAdapter(this::onRecommendClick) }
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         setupMovieRecyclerView()
         setupTVShowRecyclerView()
-
+        setupRecommendRecyclerView()
         observeData()
 
         setEvent()
+    }
+
+    private fun setupRecommendRecyclerView() {
+        binding.recyclerViewRecommendForYou.apply {
+            adapter = recommendAdapter
+            addItemDecoration(LinearHorizontalItemDecoration(resources.getDimensionPixelOffset(R.dimen.dp_8)))
+        }
     }
 
     private fun setupMovieRecyclerView() {
@@ -55,6 +67,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     }
 
     private fun observeData() {
+        viewModel.getAllRecommend().observe(viewLifecycleOwner) {
+            recommendAdapter.submitList(it)
+        }
+
         viewModel.movies.observe(viewLifecycleOwner) {
             movieAdapter.submitList(it)
         }
@@ -72,6 +88,19 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     private fun onTVShowClick(item: TvShowResponse.TvShow, position: Int) {
         val action = HomeFragmentDirections.actionHomeToTvShowDetail(item.id)
         findNavController().navigate(action)
+    }
+
+    private fun onRecommendClick(item: Recommend) {
+        when (item.isMovie) {
+            true -> {
+                val action = HomeFragmentDirections.actionHomeToMovieDetail(item.id)
+                findNavController().navigate(action)
+            }
+            else -> {
+                val action = HomeFragmentDirections.actionHomeToTvShowDetail(item.id)
+                findNavController().navigate(action)
+            }
+        }
     }
 
     companion object {

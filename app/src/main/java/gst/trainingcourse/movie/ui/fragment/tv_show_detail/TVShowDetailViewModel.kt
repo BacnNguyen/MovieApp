@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import gst.trainingcourse.movie.data.model.Recommend
 import gst.trainingcourse.movie.data.model.TvShowResponse
 import gst.trainingcourse.movie.data.model.YoutubeResponse
 import gst.trainingcourse.movie.data.repo.LocalRepo
@@ -42,6 +43,22 @@ class TVShowDetailViewModel @Inject constructor(
     fun saveShow(show: TvShowResponse.TvShow) {
         viewModelScope.launch(Dispatchers.IO) {
             localRepo.saveShow(show)
+        }
+    }
+
+    fun saveRecommendShow() {
+        viewModelScope.launch(Dispatchers.IO) {
+            tvShowRecommend.value?.let { list ->
+                localRepo.saveRecommend(
+                    list.map {
+                        Recommend(
+                            id = it.id,
+                            isMovie = false,
+                            thumbNail = it.posterPath
+                        )
+                    }
+                )
+            }
         }
     }
 
