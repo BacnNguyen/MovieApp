@@ -10,4 +10,6 @@
     <string name="hint_comment">Comment</string>
     <string name="title_person_trending">Person Trending</string>
     <string name="title_recommend_for_you">Recommend for you</string>
+    <string name="title_movie">Movie</string>
+    <string name="title_tv_show">TV Show</string>
 </resources>
