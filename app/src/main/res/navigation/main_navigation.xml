@@ -51,11 +51,25 @@
     <fragment
         android:id="@+id/favorite"
         android:name="gst.trainingcourse.movie.ui.fragment.favorite.FavoriteFragment"
-        android:label="FavoriteFragment" />
+        android:label="FavoriteFragment" >
+        <action
+            android:id="@+id/action_favorite_to_tv_show_detail"
+            app:destination="@id/tv_show_detail" />
+        <action
+            android:id="@+id/action_favorite_to_movie_detail"
+            app:destination="@id/movie_detail" />
+    </fragment>
     <fragment
         android:id="@+id/search"
         android:name="gst.trainingcourse.movie.ui.fragment.search.SearchFragment"
-        android:label="SearchFragment" />
+        android:label="SearchFragment" >
+        <action
+            android:id="@+id/action_search_to_movie_detail"
+            app:destination="@id/movie_detail" />
+        <action
+            android:id="@+id/action_search_to_tv_show_detail"
+            app:destination="@id/tv_show_detail" />
+    </fragment>
     <fragment
         android:id="@+id/movie_detail"
         android:name="gst.trainingcourse.movie.ui.fragment.movie_detail.MovieDetailFragment"

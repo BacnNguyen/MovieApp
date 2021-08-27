@@ -20,6 +20,7 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import gst.trainingcourse.movie.R
 import gst.trainingcourse.movie.data.model.SearchResponse
@@ -223,7 +224,23 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
     }
 
     private fun onSearchResultClick(item: SearchResponse.Result, position: Int) {
+        when (item.mediaType) {
+            "person" -> Toast.makeText(
+                requireContext(),
+                "This function not supported",
+                Toast.LENGTH_SHORT
+            ).show()
 
+            "tv" -> {
+                val action = SearchFragmentDirections.actionSearchToTvShowDetail(item.id)
+                findNavController().navigate(action)
+            }
+
+            else -> {
+                val action = SearchFragmentDirections.actionSearchToMovieDetail(item.id)
+                findNavController().navigate(action)
+            }
+        }
     }
 
     companion object {

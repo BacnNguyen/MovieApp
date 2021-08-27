@@ -3,6 +3,7 @@ package gst.trainingcourse.movie.ui.fragment.favorite
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import gst.trainingcourse.movie.R
 import gst.trainingcourse.movie.data.model.MovieResponse
@@ -32,10 +33,35 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(R.layout.fragment
 
     private fun observeData() {
         viewModel.getAllMovie().observe(viewLifecycleOwner) {
+
+            if (it == null || it.isEmpty()) {
+                binding.apply {
+                    recyclerViewMovie.visibility = View.GONE
+                    textViewMovie.visibility = View.GONE
+                }
+            } else {
+                binding.apply {
+                    recyclerViewMovie.visibility = View.VISIBLE
+                    textViewMovie.visibility = View.VISIBLE
+                }
+            }
+
             movieAdapter.submitList(it)
         }
 
         viewModel.getAllTVShow().observe(viewLifecycleOwner) {
+            if (it == null || it.isEmpty()) {
+                binding.apply {
+                    recyclerViewTvShow.visibility = View.GONE
+                    textViewTvShow.visibility = View.GONE
+                }
+            } else {
+                binding.apply {
+                    recyclerViewTvShow.visibility = View.VISIBLE
+                    textViewTvShow.visibility = View.VISIBLE
+                }
+            }
+
             tvShowAdapter.submitList(it)
         }
     }
@@ -55,10 +81,12 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(R.layout.fragment
     }
 
     private fun onMovieClick(item: MovieResponse.Movie, position: Int) {
-
+        val action = FavoriteFragmentDirections.actionFavoriteToMovieDetail(item.id)
+        findNavController().navigate(action)
     }
 
     private fun onTVShowClick(item: TvShowResponse.TvShow, position: Int) {
-
+        val action = FavoriteFragmentDirections.actionFavoriteToTvShowDetail(item.id)
+        findNavController().navigate(action)
     }
 }

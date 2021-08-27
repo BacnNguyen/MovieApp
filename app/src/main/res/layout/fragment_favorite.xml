@@ -7,6 +7,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_movie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_movie"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_26"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view_movie"
             android:layout_width="match_parent"
@@ -16,8 +27,21 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_view_movie"
+            app:layout_goneMarginTop="@dimen/dp_5"
             tools:listitem="@layout/item_movie" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_tv_show"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_20"
+            android:text="@string/title_tv_show"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_26"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/recycler_view_movie" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view_tv_show"
@@ -28,7 +52,7 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/recycler_view_movie"
+            app:layout_constraintTop_toBottomOf="@id/text_view_tv_show"
             app:layout_goneMarginTop="@dimen/dp_20"
             tools:listitem="@layout/item_movie" />
 
