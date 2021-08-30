@@ -4,7 +4,8 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:paddingHorizontal="@dimen/dp_10">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -104,35 +105,51 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/text_view_recommendations" />
 
+            <View
+                android:id="@+id/view_comment"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/dp_20"
+                android:background="@drawable/bg_comment"
+                app:layout_constraintDimensionRatio="3:2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/recycler_view_recommend" />
+
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/edit_text_user_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/dp_20"
                 android:layout_marginTop="@dimen/dp_20"
+                android:elevation="@dimen/dp_5"
                 android:hint="@string/hint_user_name"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/recycler_view_recommend" />
+                app:layout_constraintBottom_toTopOf="@+id/edit_text_comment"
+                app:layout_constraintEnd_toEndOf="@id/view_comment"
+                app:layout_constraintStart_toStartOf="@id/view_comment"
+                app:layout_constraintTop_toTopOf="@id/view_comment" />
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/edit_text_comment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/dp_20"
-                android:layout_marginTop="@dimen/dp_10"
+                android:elevation="@dimen/dp_5"
                 android:hint="@string/hint_comment"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/button_comment"
+                app:layout_constraintEnd_toEndOf="@id/view_comment"
+                app:layout_constraintStart_toStartOf="@id/view_comment"
                 app:layout_constraintTop_toBottomOf="@id/edit_text_user_name" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/button_comment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginBottom="@dimen/dp_20"
                 android:text="@string/hint_comment"
                 android:textAllCaps="false"
+                android:background="@android:color/holo_blue_light"
+                app:layout_constraintBottom_toBottomOf="@id/view_comment"
                 app:layout_constraintEnd_toEndOf="@id/edit_text_comment"
                 app:layout_constraintTop_toBottomOf="@id/edit_text_comment" />
 
@@ -146,7 +163,7 @@
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/button_comment" />
+                app:layout_constraintTop_toBottomOf="@id/view_comment" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
