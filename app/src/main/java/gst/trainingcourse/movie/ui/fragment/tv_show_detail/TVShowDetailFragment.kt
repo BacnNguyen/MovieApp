@@ -140,6 +140,8 @@ class TVShowDetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragme
                 val currentMovieId = viewModel.tvShowDetail.value?.id ?: return@setOnClickListener
                 firebase.reference.child("$currentMovieId").push()
                     .setValue(Comment(username, comment))
+                editTextUserName.text?.clear()
+                editTextComment.text?.clear()
             }
             imageFavorite.setOnClickListener {
                 if (imageFavorite.isActivated) {

@@ -5,12 +5,15 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:padding="@dimen/dp_10">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/text_view_movie"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_movie"
+            android:drawablePadding="@dimen/dp_10"
             android:text="@string/title_movie"
             android:textColor="@color/black"
             android:textSize="@dimen/sp_26"
@@ -36,6 +39,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_20"
+            android:drawableStart="@drawable/ic_tv_show"
+            android:drawablePadding="@dimen/dp_10"
             android:text="@string/title_tv_show"
             android:textColor="@color/black"
             android:textSize="@dimen/sp_26"

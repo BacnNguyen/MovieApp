@@ -49,6 +49,8 @@ class ShowPopularFragment :
 
     private fun observeData() {
         viewModel.movies.observe(viewLifecycleOwner) {
+            binding.progressLoading.visibility = if (it == null || it.isEmpty()) View.VISIBLE
+            else View.GONE
             movieAdapter.submitList(it)
         }
     }

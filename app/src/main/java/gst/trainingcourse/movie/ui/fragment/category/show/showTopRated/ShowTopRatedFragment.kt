@@ -11,10 +11,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import gst.trainingcourse.movie.R
 import gst.trainingcourse.movie.data.model.TvShowResponse
 import gst.trainingcourse.movie.databinding.FragmentCategoryMovieBinding
-import gst.trainingcourse.movie.helper.GridVerticalItemDecoration
 import gst.trainingcourse.movie.ui.fragment.base.BaseFragment
 import gst.trainingcourse.movie.ui.fragment.category.show.adapter.ShowAdapter
-import gst.trainingcourse.movie.ui.fragment.category.show.showAiringToday.ShowAiringTodayFragmentDirections
 
 @AndroidEntryPoint
 class ShowTopRatedFragment :
@@ -50,6 +48,8 @@ class ShowTopRatedFragment :
 
     private fun observeData() {
         viewModel.movies.observe(viewLifecycleOwner) {
+            binding.progressLoading.visibility = if (it == null || it.isEmpty()) View.VISIBLE
+            else View.GONE
             movieAdapter.submitList(it)
         }
     }
@@ -65,7 +65,7 @@ class ShowTopRatedFragment :
         } else {
             binding.recylerView.apply {
                 adapter = movieAdapter
-                layoutManager = GridLayoutManager(requireContext(),2)
+                layoutManager = GridLayoutManager(requireContext(), 2)
             }
         }
     }

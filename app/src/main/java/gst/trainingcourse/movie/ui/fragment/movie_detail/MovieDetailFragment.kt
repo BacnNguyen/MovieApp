@@ -139,6 +139,8 @@ class MovieDetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragmen
                 val currentMovieId = viewModel.movieDetail.value?.id ?: return@setOnClickListener
                 firebase.reference.child("$currentMovieId").push()
                     .setValue(Comment(username, comment))
+                editTextUserName.text?.clear()
+                editTextComment.text?.clear()
             }
             imageFavorite.setOnClickListener {
                 if (imageFavorite.isActivated) {
